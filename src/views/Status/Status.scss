@@ -1,0 +1,36 @@
+@use '../../scss/colors';
+@use '../../scss/mixins';
+
+.status {
+    @include mixins.background(none, colors.$orange);
+
+    display: flex;
+    justify-content: center;
+
+    // Nedståend är mer eller mindre, samma som i CartList
+    // - bör nog flyttas till generell
+    &__button {
+        color: colors.$brown;
+        background: colors.$white;
+        border: none;
+
+        font-family: 'PT Serif';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+
+        padding: 0.7rem 2.2rem;
+        border-radius: 50px;
+
+        align-self: center;
+
+        transition: all 0.3s;
+
+        margin-top: 50px;
+    }
+
+    &__button:hover {
+        color: colors.$white;
+        background: colors.$brown;
+    }
+}

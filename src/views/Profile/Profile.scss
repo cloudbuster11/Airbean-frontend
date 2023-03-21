@@ -1,0 +1,16 @@
+@use '../../scss/mixins';
+@use '../../scss/colors';
+
+.profile {
+  @include mixins.background(top, colors.$brown);
+
+  &__container {
+    margin: 0 1.5rem;
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}

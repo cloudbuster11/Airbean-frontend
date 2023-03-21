@@ -1,0 +1,35 @@
+@use '../../scss/colors';
+@use '../../scss/mixins';
+
+.landing__container {
+    height: 100vh;
+    @include mixins.background(left & right, colors.$dark-green);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: colors.$white;
+}
+
+.landing__logo {
+    @include mixins.circle(65px);
+    background-color: colors.$light-green;
+    display: flex;
+    justify-content: center;
+    transition: 0.4s;
+}
+
+.landing__logo:hover {
+    background-color: colors.$orange;
+}
+
+.landing__text {
+    font-size: 9px;
+    letter-spacing: 0.2rem;
+}
+
+.landing__heading {
+    font-family: 'Rufina';
+    margin-bottom: 0.5rem;
+}

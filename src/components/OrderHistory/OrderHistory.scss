@@ -1,0 +1,35 @@
+@use '../../scss/colors';
+
+.orderhistory {
+  color: colors.$white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__profile {
+    display: block;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  &__name {
+    margin-bottom: 3rem;
+    text-transform: capitalize;
+  }
+
+  &__stats {
+    width: 320px;
+  }
+
+  &__subtitle {
+    margin-bottom: 1rem;
+  }
+
+  &__total {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

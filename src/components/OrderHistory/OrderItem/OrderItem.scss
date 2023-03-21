@@ -1,0 +1,22 @@
+@use '../../../scss/colors';
+
+.history {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+
+  &__ordernr {
+    font-weight: 700;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+  }
+
+  &__right {
+    text-align: right;
+  }
+}

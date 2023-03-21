@@ -1,0 +1,37 @@
+@use "../../scss/mixins";
+@use "../../scss/colors";
+
+.cart {
+    @include mixins.center;
+    @include mixins.circle(60px);
+
+    position: relative;
+    background-color: colors.$brown;
+
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
+
+    cursor: pointer;
+
+    &__number-of-items {
+        @include mixins.center;
+        @include mixins.circle(24px);
+
+        font-family: 'PT Serif';
+        font-weight: 700;
+        font-size: 12px;
+
+        color: colors.$white;
+        background-color: colors.$orange;
+
+        user-select: none;
+
+        position: absolute;
+
+        top: -5%;
+        right: 0%;
+    }
+
+    >svg {
+        stroke: colors.$white;
+    }
+}

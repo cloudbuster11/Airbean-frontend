@@ -1,0 +1,40 @@
+@use '../../scss/colors';
+@use '../../scss/mixins';
+
+.about {
+    @include mixins.background(top & bottom, colors.$pink);
+    color: colors.$brown;
+
+    &__content {
+        margin: 4rem 1.3rem 0 1.3rem;
+    }
+
+    &__text {
+        margin: 1rem 0;
+        line-height: 19px;
+        font-size: 14px;
+    }
+
+    &__text:nth-child(2) {
+        font-weight: 600;
+    }
+
+    &__profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3rem;
+    }
+}
+
+.profile {
+    &__photo {
+        width: 74px;
+        margin-bottom: 0.5rem;
+    }
+
+    &__text {
+        margin: 0.4rem 0;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,16 @@
+@use '../../scss/colors';
+@use '../../scss/mixins';
+
+.menu {
+  @include mixins.background(top & bottom, colors.$pink);
+
+  &__container {
+    margin: 0 1.5rem;
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
