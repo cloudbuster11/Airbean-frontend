@@ -1,4 +1,5 @@
 function addProduct(product) {
+  console.log(product);
   return {
     type: 'cart/addProduct',
     payload: product,

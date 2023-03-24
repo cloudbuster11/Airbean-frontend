@@ -1,89 +1,80 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import ProfileForm from '../../components/ProfileForm/ProfileForm';
-import OrderHistory from '../../components/OrderHistory/OrderHistory';
+import { getUserData } from '../../helpers/api';
 
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
+import Cart from '../../components/Cart/Cart';
 import './Profile.scss';
+import UploadImg from '../../components/UploadImg/UploadImg';
+import ChangePassWordForm from '../../components/ChangePasswordForm/ChangePassWordForm';
 
 export default function Profile() {
-  const [token, setToken] = useState(sessionStorage.token);
-  const [displaySignUp, setDisplaySignUp] = useState(false);
+  const [userData, setUserData] = useState([]);
+  const [showUploadForm, setShowUploadForm] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const navigate = useNavigate();
 
-  const createRequest = (data) => {
-    return {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    };
-  };
+  const BASE_URL = `https://www.airbean.joakimtrulsson.se/public/img/users/`;
 
-  const login = async (userData) => {
-    const url = 'https://airbean.awesomo.dev/api/user/login';
+  useEffect(() => {
+    getData();
+  }, []);
 
-    try {
-      const resp = await fetch(url, createRequest(userData));
-      const data = await resp.json();
-      sessionStorage.setItem('token', data.token);
-      sessionStorage.setItem('username', userData.username);
-      setToken(data.token);
-    } catch (err) {
-      console.error(err);
+  async function getData() {
+    const data = await getUserData();
+    console.log(data);
+    if (data.status === 'success') {
+      setUserData(data.data.doc);
+    } else {
+      navigate('/userform');
     }
-  };
+  }
 
-  const signUp = async (userData) => {
-    const url = 'https://airbean.awesomo.dev/api/user/signup';
-
-    try {
-      const resp = await fetch(url, createRequest(userData));
-      const data = await resp.json();
-      setDisplaySignUp(false);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const loginForm = (
-    <ProfileForm
-      title='Logga in nedan för att se din orderhistorik.'
-      button='Logga in'
-      handler={login}
-      key='login'
-    >
-      <p className='form__changeview'>
-        Inget konto än? Skapa ett{' '}
-        <span className='form__link' onClick={() => setDisplaySignUp(true)}>
-          här
-        </span>
-      </p>
-    </ProfileForm>
-  );
-
-  const signUpForm = (
-    <ProfileForm
-      title='Genom att skapa ett konto nedan kan du spara och se din orderhistorik.'
-      button='Skapa konto'
-      handler={signUp}
-      key='signUp'
-    >
-      <p className='form__changeview'>
-        Redan medlem? Logga in{' '}
-        <span className='form__link' onClick={() => setDisplaySignUp(false)}>
-          här
-        </span>
-      </p>
-    </ProfileForm>
-  );
+  function handleToggle(component) {
+    if (component === 'imageForm') setShowUploadForm((current) => !current);
+    if (component === 'passwordForm') setShowPasswordForm((current) => !current);
+  }
 
   return (
     <main className='container profile'>
       <Header>
         <Nav />
+        <Cart />
       </Header>
 
-      {token ? <OrderHistory /> : !displaySignUp ? loginForm : signUpForm}
+      <article className='profile__container'>
+        <h1 className='profile__title'>Profil</h1>
+        <img className='profile__img' src={`${BASE_URL}/${userData.photo}`}></img>
+        {!showUploadForm && (
+          <button className='profile__upload' onClick={() => handleToggle('imageForm')}>
+            Ladda upp ny bild
+          </button>
+        )}
+        {showUploadForm && <UploadImg getData={getData} />}
+        {showUploadForm && <p onClick={() => handleToggle('imageForm')}>Avbryt</p>}
+
+        {!showPasswordForm && (
+          <button className='profile__upload' onClick={() => handleToggle('passwordForm')}>
+            Ändra lösenord
+          </button>
+        )}
+        {showPasswordForm && <ChangePassWordForm handleToggle={handleToggle} />}
+        {showPasswordForm && <p onClick={() => handleToggle('passwordForm')}>Avbryt</p>}
+        <section>
+          <p>
+            Namn: <span>{userData.name}</span>
+          </p>
+          <p>
+            Epost: <span>{userData.email}</span>
+          </p>
+
+          <p>
+            Användarnamn: <span>{userData.username}</span>
+          </p>
+        </section>
+      </article>
     </main>
   );
 }

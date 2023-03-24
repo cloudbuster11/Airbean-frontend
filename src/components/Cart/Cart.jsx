@@ -12,7 +12,6 @@ export default function Cart() {
   const numberOfItems = cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
   const zIndex = showCart ? 2 : 1;
-
   return (
     <>
       {showCart && <div className='overlay' style={{ zIndex: zIndex }} />}

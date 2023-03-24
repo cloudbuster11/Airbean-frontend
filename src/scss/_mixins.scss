@@ -1,46 +1,30 @@
 @mixin center {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin circle($dimension) {
-    width: $dimension;
-    height: $dimension;
+  width: $dimension;
+  height: $dimension;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 @mixin background($style: none, $color) {
-    @if $style ==none {
-        background: $color;
-    }
-
-    @else if $style ==top {
-        background:
-            no-repeat top url(/leafs_top.svg),
-            $color;
-    }
-
-    @else if $style ==bottom {
-        background:
-            no-repeat bottom url(/leafs_bottom.svg),
-            $color;
-        padding-bottom: 73px;
-    }
-
-    @else if $style ==(top & bottom) {
-        background: no-repeat top url(/leafs_top.svg),
-            no-repeat bottom url(/leafs_bottom.svg),
-            $color;
-        padding-bottom: 73px;
-    }
-
-    @else if $style ==(left & right) {
-        background: no-repeat left url(/src/assets/landing_leaves_left.svg),
-            no-repeat right url(/src/assets/landing_leaves_right.svg),
-            $color;
-        background-size: contain;
-    }
+  @if $style ==none {
+    background: $color;
+  } @else if $style ==top {
+    background: no-repeat top url(/leafs_top.svg), $color;
+  } @else if $style ==bottom {
+    background: no-repeat bottom url(/leafs_bottom.svg), $color;
+    padding-bottom: 73px;
+  } @else if $style ==(top & bottom) {
+    background: no-repeat top url(/leafs_top.svg), no-repeat bottom url(/leafs_bottom.svg), $color;
+    padding-bottom: 73px;
+  } @else if $style ==(left & right) {
+    background: no-repeat left url(/src/assets/landing_leaves_left.svg),
+      no-repeat right url(/src/assets/landing_leaves_right.svg), $color;
+    background-size: contain;
+  }
 }

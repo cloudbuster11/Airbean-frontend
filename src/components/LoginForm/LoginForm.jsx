@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import logoSmall from '../../assets/logo_small.svg';
 
-import './ProfileForm.scss';
+import './LoginForm.scss';
 
-export default function ProfileForm({ title, button, handler, children }) {
+export default function LoginForm({ title, button, handler, children }) {
   const [data, setData] = useState({
     username: '',
     password: '',
@@ -15,7 +15,7 @@ export default function ProfileForm({ title, button, handler, children }) {
 
   const submit = (event) => {
     event.preventDefault();
-    handler(data);
+    handler(JSON.stringify(data));
   };
 
   return (
@@ -25,7 +25,7 @@ export default function ProfileForm({ title, button, handler, children }) {
       <p className='user__subtitle'>{title}</p>
 
       <form className='form' onSubmit={submit}>
-        <label className='form__label'>Namn</label>
+        <label className='form__label'>Användarnamn</label>
         <input
           className='form__input'
           name='username'

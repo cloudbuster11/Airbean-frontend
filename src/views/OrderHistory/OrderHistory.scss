@@ -1,4 +1,10 @@
 @use '../../scss/colors';
+@use '../../scss/mixins';
+
+.orders {
+  @include mixins.background(top & bottom, colors.$brown);
+  color: colors.$brown;
+}
 
 .orderhistory {
   color: colors.$white;
@@ -7,13 +13,13 @@
   align-items: center;
 
   &__profile {
-    display: block;
+    @include mixins.circle(94px);
     margin-top: 4rem;
     margin-bottom: 1rem;
   }
 
   &__name {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-transform: capitalize;
   }
 

@@ -20,7 +20,7 @@
 
     transition: all 0.2s;
 
-    >svg {
+    > svg {
       stroke: colors.$white;
     }
   }
@@ -40,7 +40,8 @@
     border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
   }
 
-  &__desc {
+  &__desc,
+  &__rating {
     font-family: 'Work Sans';
 
     font-style: normal;
@@ -54,5 +55,9 @@
     font-size: 23px;
     line-height: 120%;
     white-space: nowrap;
+  }
+
+  &__rating {
+    text-align: right;
   }
 }
