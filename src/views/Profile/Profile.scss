@@ -21,7 +21,7 @@
     margin-bottom: 2rem;
   }
 
-  &__upload {
+  &__btn {
     margin: auto;
     height: 40px;
     width: 190px;
@@ -32,5 +32,10 @@
     font-family: 'PT Serif';
     font-size: 18px;
     margin-bottom: 1rem;
+    transition: all 0.2s;
+  }
+
+  &__btn:hover {
+    background-color: colors.$orange;
   }
 }

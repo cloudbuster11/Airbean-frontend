@@ -9,11 +9,6 @@ import CartListItem from './CartListItem/CartListItem';
 import './CartList.scss';
 
 export default function CartList({ items, show }) {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const token = sessionStorage.token;
-
   const sum = items.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
 
   const totalSum = sum;

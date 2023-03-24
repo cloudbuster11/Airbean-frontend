@@ -1,0 +1,72 @@
+@use '../../../scss/mixins';
+@use '../../../scss/colors';
+
+.user {
+  width: 350px;
+  background-color: colors.$pink;
+  margin-top: 6rem;
+  padding: 1rem;
+  border-radius: 3px;
+  align-self: center;
+
+  &__logo {
+    margin: auto;
+    display: block;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: 12px;
+    margin-bottom: 0.2rem;
+  }
+
+  &__input {
+    background-color: colors.$pink;
+    border-radius: 5px;
+    border: solid 1px colors.$brown;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    font-family: 'Work Sans';
+  }
+
+  &__input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #f3e4e1 inset;
+  }
+
+  &__changeview {
+    margin-bottom: 1rem;
+  }
+
+  &__link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__submit {
+    margin: auto;
+    height: 55px;
+    width: 250px;
+    background-color: colors.$brown;
+    border-radius: 6px;
+    border: none;
+    color: colors.$white;
+    font-family: 'PT Serif';
+    font-size: 24px;
+  }
+}

@@ -14,8 +14,9 @@ import { useNavigate } from 'react-router-dom';
 import { getAllProducts } from '../../helpers/api';
 
 export default function Menu() {
-  const [menuData, setMenuData] = useState([]);
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(false);
   const isLoggedIn = sessionStorage.getItem('token');
 
   const dispatch = useDispatch();
@@ -29,16 +30,28 @@ export default function Menu() {
       const data = await getAllProducts();
 
       if (data.status === 'success') {
-        setMenuData(data.data.allDocs);
+        setProducts(data.data.allDocs);
       } else {
       }
     };
 
     getData();
-  }, []);
+  }, [reload]);
 
-  const allProductsElem = menuData.map((product) => {
-    if (isLoggedIn) return <MenuItem key={product._id} product={product} handleAddToCart={handleAddToCart} />;
+  function reloadProducts() {
+    setReload((current) => !current);
+  }
+
+  const allProducts = products.map((product) => {
+    if (isLoggedIn)
+      return (
+        <MenuItem
+          key={product._id}
+          product={product}
+          handleAddToCart={handleAddToCart}
+          reloadProducts={reloadProducts}
+        />
+      );
     else if (!isLoggedIn) return <MenuItem key={product._id} product={product} handleAddToCart={false} />;
   });
 
@@ -61,7 +74,7 @@ export default function Menu() {
             <span>Logga in</span> för att kunna beställa.
           </p>
         ) : null}
-        {allProductsElem}
+        {allProducts}
       </article>
     </main>
   );

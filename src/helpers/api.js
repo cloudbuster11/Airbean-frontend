@@ -20,9 +20,10 @@ async function callApi(endpoint, method, body) {
   try {
     const response = await fetch(`${apiUri}${endpoint}`, request);
     const result = await response.json();
-    console.log('!', result);
+    console.log('I api.js', result);
     if (result.status === 'error') {
-      sessionStorage.clear();
+      // Om token är ogiltigt
+      // sessionStorage.clear();
       return { success: false, message: 'error' };
     }
     return result;
@@ -69,17 +70,15 @@ async function getOrderStatus(orderId) {
   return await callApi(`/orders/orderstatus/${orderId}`, 'GET');
 }
 
-// Ändras
-async function postOrder(order) {
-  return await validator(async () => await callApi('/beans/order', { details: { order: order } }));
+async function deleteReview(reviewId) {
+  return await callApi(`/reviews/${reviewId}`, 'DELETE');
 }
-async function getOrder(orderNr) {
-  return await validator(async () => await callApi(`/beans/orders/status/${orderNr}`));
+
+async function postReview(body) {
+  return await callApi(`/reviews/`, 'POST', body);
 }
 
 export {
-  postOrder,
-  getOrder,
   getOrderHistory,
   getUserData,
   patchUserImg,
@@ -89,4 +88,6 @@ export {
   patchPassword,
   getCheckoutSession,
   getOrderStatus,
+  deleteReview,
+  postReview,
 };
