@@ -1,0 +1,9 @@
+@use '../../../scss/mixins';
+@use '../../../scss/colors';
+
+.changename {
+  &__form {
+    @include mixins.center;
+    flex-direction: column;
+  }
+}

@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './Nav.scss';
+import SignOutButton from './SignOutButton/SignOutButton';
 
 export default function Nav() {
   const [show, setShow] = useState(false);
+
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAdmin = useSelector((state) => state.user.role);
+  const latestOrderId = useSelector((state) => state.user.latestOrderId);
 
   return (
     <>
@@ -36,11 +42,26 @@ export default function Nav() {
 
         <hr className='nav__solid' />
 
-        <NavLink to='/status' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+        <NavLink
+          to={`/status?session_id=${latestOrderId}`}
+          className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}
+        >
           <h2>Orderstatus</h2>
         </NavLink>
 
+        {isAdmin === 'admin' && <hr className='nav__solid' />}
+
+        {isAdmin === 'admin' && (
+          <NavLink to='/admin' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+            <h2>Admin</h2>
+          </NavLink>
+        )}
+
         <hr className='nav__solid' />
+
+        {isAuthenticated && <SignOutButton />}
+
+        {isAuthenticated && <hr className='nav__solid' />}
       </nav>
 
       <button className='nav__btn' onClick={() => setShow(!show)}>

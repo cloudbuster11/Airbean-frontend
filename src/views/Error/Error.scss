@@ -1,0 +1,22 @@
+@use '../../scss/colors';
+@use '../../scss/mixins';
+
+.error {
+  @include mixins.background(top & bottom, colors.$pink);
+  color: colors.$brown;
+
+  &__content {
+    margin: 4rem 1.3rem 0 1.3rem;
+  }
+
+  &__heading {
+    text-align: center;
+  }
+
+  &__text {
+    text-align: center;
+    margin: 1rem 0;
+    line-height: 19px;
+    font-size: 14px;
+  }
+}

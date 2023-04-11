@@ -5,6 +5,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -56,4 +58,87 @@ svg {
 
 button {
   cursor: pointer;
+}
+
+.input__small,
+.input__large,
+.input__xlarge {
+  padding-left: 0.5rem;
+  background-color: colors.$pink;
+  border-radius: 5px;
+  border: solid 1px colors.$brown;
+  font-family: 'Work Sans';
+}
+
+.input__xlarge {
+  width: 310px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.input__large {
+  width: 230px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.input__small {
+  height: 40px;
+  width: 190px;
+  padding-left: 0.5rem;
+  background-color: colors.$pink;
+  border-radius: 5px;
+  border: solid 1px colors.$brown;
+  font-family: 'Work Sans';
+  margin-top: 1rem;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #f3e4e1 inset;
+}
+
+.text__area {
+  padding-top: 0.6rem;
+  resize: none;
+}
+
+li {
+  list-style: none;
+}
+
+.button__large,
+.button__small {
+  background-color: colors.$brown;
+  border-radius: 6px;
+  border: none;
+  color: colors.$white;
+  font-family: 'PT Serif';
+  transition: all 0.2s;
+}
+
+.button__large {
+  height: 40px;
+  width: 190px;
+  font-size: 18px;
+  margin-top: 1rem;
+}
+
+.button__small {
+  height: 25px;
+  width: 80px;
+  font-size: 16px;
+  // margin-bottom: 1rem;
+}
+
+.button__large:hover,
+.button__small:hover {
+  background-color: colors.$orange;
+}
+
+.button-warning {
+  background-color: colors.$orange;
+}
+
+.button-warning:hover {
+  background-color: colors.$brown;
 }

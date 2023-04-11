@@ -2,68 +2,74 @@
 @use '../../scss/mixins';
 
 .nav {
-    padding: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  right: 0;
+  width: inherit;
+  height: 100vh;
+  transition: 1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: colors.$brown;
+  z-index: 2;
+
+  &__active,
+  &__inactive {
+    transition: 0.4s;
+    text-decoration: none;
+  }
+
+  &__inactive {
+    color: colors.$white;
+  }
+
+  &__active {
+    color: colors.$orange;
+  }
+
+  &__inactive:hover {
+    opacity: 30%;
+  }
+
+  &__solid {
+    width: 48px;
+    border: 1px solid #ffffff33;
     margin: 0;
-    position: absolute;
-    top: -100vh;
-    left: 0;
-    right: 0;
-    width: inherit;
-    height: 100vh;
-    transition: 1s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    background-color: colors.$brown;
+  }
+
+  &__btn {
+    @include mixins.center;
+    @include mixins.circle(48px);
+    background-color: colors.$white;
+
+    transition: all 0.2s;
+
+    border: none;
     z-index: 2;
 
-    &__active,
-    &__inactive {
-        transition: 0.4s;
-        text-decoration: none;
+    > svg {
+      width: 26px;
+      height: 26px;
     }
+  }
 
-    &__inactive {
-        color: colors.$white;
-    }
+  &--show-nav {
+    transform: translateY(100vh);
+  }
 
-    &__active {
-        color: colors.$orange;
-    }
+  &__signout {
+    color: colors.$white;
+    transition: 0.4s;
+    cursor: pointer;
+  }
 
-    &__inactive:hover {
-        opacity: 30%;
-    }
-
-    &__solid {
-        width: 48px;
-        border: 1px solid #FFFFFF33;
-        margin: 0;
-    }
-
-    &__btn {
-        @include mixins.center;
-        @include mixins.circle(48px);
-        background-color: colors.$white;
-
-        transition: all 0.2s;
-
-        border: none;
-        z-index: 2;
-
-        >svg {
-            width: 26px;
-            height: 26px;
-        }
-    }
-
-    &__btn:hover {
-        background-color: colors.$orange;
-    }
-
-    &--show-nav {
-        transform: translateY(100vh);
-    }
+  &__signout:hover {
+    opacity: 30%;
+  }
 }

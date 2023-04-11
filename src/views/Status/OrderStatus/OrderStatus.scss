@@ -1,0 +1,42 @@
+@use '../../../scss/colors';
+
+.order-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: colors.$white;
+
+  &__order-nr {
+    color: #ffffffb2;
+
+    margin-bottom: 40px;
+
+    > span {
+      font-weight: 700;
+    }
+  }
+
+  &__drone {
+    max-width: 216px;
+    min-width: 216px;
+
+    max-height: 120px;
+    min-height: 120px;
+  }
+
+  &__status {
+    text-align: center;
+    margin: 65px 48px 30px 48px;
+  }
+
+  &__eta {
+    font-family: 'Work Sans';
+    font-weight: 400;
+    font-size: 21px;
+
+    > span {
+      font-weight: 700;
+    }
+  }
+}

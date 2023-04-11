@@ -5,7 +5,6 @@
   @include mixins.background(top, colors.$pink);
 
   &__container {
-    margin: 0 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +12,7 @@
 
   &__img {
     @include mixins.circle(94px);
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
   }
 
   &__title {
@@ -21,21 +20,13 @@
     margin-bottom: 2rem;
   }
 
-  &__btn {
-    margin: auto;
-    height: 40px;
-    width: 190px;
-    background-color: colors.$brown;
-    border-radius: 6px;
-    border: none;
-    color: colors.$white;
-    font-family: 'PT Serif';
-    font-size: 18px;
+  &__username {
     margin-bottom: 1rem;
-    transition: all 0.2s;
   }
 
-  &__btn:hover {
-    background-color: colors.$orange;
+  &__hide {
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: center;
   }
 }

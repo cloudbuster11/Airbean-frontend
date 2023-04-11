@@ -1,0 +1,14 @@
+@use '../../scss/mixins';
+@use '../../scss/colors';
+
+.userreviews {
+  &__container {
+    width: 300px;
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+  }
+}

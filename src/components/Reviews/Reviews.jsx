@@ -1,11 +1,12 @@
 import ReviewItem from './ReviewItem/ReviewItem';
 
+import './Reviews.scss';
+
 import { deleteReview } from '../../helpers/api';
 
-export default function Reviews({ userData, getData }) {
+export default function Reviews({ userData, getData, children }) {
   const handleDelete = async (e, id) => {
     e.preventDefault();
-    console.log('Ta bort den här recenesionen', id);
     const response = await deleteReview(id);
     if (response.status === 'success') getData();
   };
@@ -15,8 +16,9 @@ export default function Reviews({ userData, getData }) {
   ));
 
   return (
-    <section>
-      <p>Dina recensioner</p>
+    <section className='userreviews__container'>
+      {children}
+      <h3 className='userreviews__title'>Dina recensioner</h3>
 
       {reviews.length > 0 ? reviews : <p>Du har inte skrivit några recensioner än.</p>}
     </section>

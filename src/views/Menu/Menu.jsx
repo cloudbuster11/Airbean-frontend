@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addProduct } from '../../actions/cartActions';
 
 import Header from '../../components/Header/Header';
 import Cart from '../../components/Cart/Cart';
-import MenuItem from '../../components/MenuItem/MenuItem';
+import MenuItem from './MenuItem/MenuItem';
 import Nav from '../../components/Nav/Nav';
 
-import '../Menu/Menu.scss';
+import './Menu.scss';
 import { useNavigate } from 'react-router-dom';
 
 import { getAllProducts } from '../../helpers/api';
 
 export default function Menu() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
-  const isLoggedIn = sessionStorage.getItem('token');
 
-  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   const handleAddToCart = (productId) => {
     dispatch(addProduct(productId));
@@ -43,7 +44,7 @@ export default function Menu() {
   }
 
   const allProducts = products.map((product) => {
-    if (isLoggedIn)
+    if (isAuthenticated)
       return (
         <MenuItem
           key={product._id}
@@ -52,28 +53,29 @@ export default function Menu() {
           reloadProducts={reloadProducts}
         />
       );
-    else if (!isLoggedIn) return <MenuItem key={product._id} product={product} handleAddToCart={false} />;
+    else if (!isAuthenticated)
+      return <MenuItem key={product._id} product={product} handleAddToCart={false} />;
   });
 
   return (
     <main className='container menu'>
       <Header>
         <Nav />
-        {isLoggedIn ? <Cart /> : null}
+        {isAuthenticated ? <Cart /> : null}
       </Header>
 
       <article className='menu__container'>
         <h1 className='menu__title'>Meny</h1>
-        {!isLoggedIn ? (
+        {!isAuthenticated && (
           <p
             className='menu__login'
             onClick={() => {
               navigate('/userform');
             }}
           >
-            <span>Logga in</span> för att kunna beställa.
+            <span>Logga in</span> för att kunna beställa och läsa recensioner.
           </p>
-        ) : null}
+        )}
         {allProducts}
       </article>
     </main>

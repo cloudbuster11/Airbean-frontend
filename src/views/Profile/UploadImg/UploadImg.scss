@@ -1,0 +1,24 @@
+@use '../../../scss/mixins';
+@use '../../../scss/colors';
+
+.upload {
+  @include mixins.center();
+  flex-direction: column;
+
+  &__input {
+    width: 190px;
+    height: 20px;
+  }
+
+  &__input[type='file'] {
+    border: none;
+  }
+
+  &__input[type='file']::file-selector-button {
+    background-color: colors.$brown;
+    border: none;
+    color: colors.$white;
+    border-radius: 6px;
+    font-family: 'PT Serif';
+  }
+}

@@ -1,0 +1,14 @@
+@use '../../../scss/mixins';
+@use '../../../scss/colors';
+
+.deactivate {
+  &__container {
+    @include mixins.center;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}

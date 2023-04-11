@@ -36,19 +36,6 @@
     margin-bottom: 0.2rem;
   }
 
-  &__input {
-    background-color: colors.$pink;
-    border-radius: 5px;
-    border: solid 1px colors.$brown;
-    padding: 0.7rem 1rem;
-    margin-bottom: 1rem;
-    font-family: 'Work Sans';
-  }
-
-  &__input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #f3e4e1 inset;
-  }
-
   &__changeview {
     margin-bottom: 1rem;
   }
@@ -58,15 +45,8 @@
     cursor: pointer;
   }
 
-  &__submit {
-    margin: auto;
-    height: 55px;
-    width: 250px;
-    background-color: colors.$brown;
-    border-radius: 6px;
-    border: none;
-    color: colors.$white;
-    font-family: 'PT Serif';
-    font-size: 24px;
+  button {
+    margin-top: 0px;
+    align-self: center;
   }
 }

@@ -7,9 +7,9 @@ import './Cart.scss';
 
 export default function Cart() {
   const [showCart, setShowCart] = useState(false);
-  const cart = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const numberOfItems = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+  const numberOfItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
 
   const zIndex = showCart ? 2 : 1;
   return (
@@ -35,7 +35,7 @@ export default function Cart() {
         <p className='cart__number-of-items'>{numberOfItems}</p>
       </article>
 
-      <CartList items={cart} show={showCart} />
+      <CartList items={cartItems} show={showCart} />
     </>
   );
 }

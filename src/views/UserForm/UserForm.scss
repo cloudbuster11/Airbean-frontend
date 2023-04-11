@@ -1,16 +1,17 @@
 @use '../../scss/mixins';
 @use '../../scss/colors';
 
-.profile {
-  @include mixins.background(top, colors.$brown);
+.userform {
+  @include mixins.background(top, colors.$pink);
 
   &__container {
-    margin: 0 1.5rem;
+    padding: 3rem;
   }
 
-  &__title {
+  &__link {
+    margin-top: 0.4rem;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }

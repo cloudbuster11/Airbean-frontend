@@ -1,33 +1,44 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { getOrderHistory } from '../../helpers/api';
 
 import Nav from '../../components/Nav/Nav';
+import Cart from '../../components/Cart/Cart';
 import Header from '../../components/Header/Header';
 import OrderItem from './OrderItem/OrderItem';
 import OrderTotal from './OrderItem/OrderTotal/OrderTotal';
-import profileImg from '../../assets/profile_img.svg';
 import './OrderHistory.scss';
 
 export default function OrderHistory() {
-  const [orderHistory, setOrderHistory] = useState();
   const navigate = useNavigate();
-  const userImg = `https://www.airbean.joakimtrulsson.se/public/img/users/${sessionStorage.photourl}`;
+
+  const [orderHistory, setOrderHistory] = useState();
+
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const userName = useSelector((state) => state.user.userName);
+  const imgUrl = useSelector((state) => state.user.imgUrl);
+
+  const userImg = `https://www.airbean.joakimtrulsson.se/public/img/users/${imgUrl}`;
 
   useEffect(() => {
-    const getData = async () => {
-      const results = await getOrderHistory();
-      console.log(results);
-      if (results.status === 'success') {
-        setOrderHistory(results.data.allDocs);
-      } else {
-        navigate('/userform');
-      }
-    };
-
-    getData();
+    {
+      isAuthenticated && getData();
+    }
+    {
+      !isAuthenticated && navigate('/userform');
+    }
   }, []);
+
+  const getData = async () => {
+    const result = await getOrderHistory();
+    if (result.status === 'success') {
+      setOrderHistory(result.data.allDocs);
+    } else {
+      console.log('Orderhistory.js', result);
+    }
+  };
 
   let orderList = {};
   if (orderHistory === undefined) return;
@@ -41,10 +52,11 @@ export default function OrderHistory() {
     <main className='container orders'>
       <Header>
         <Nav />
+        <Cart />
       </Header>
       <main className='orderhistory'>
         <img className='orderhistory__profile' src={userImg}></img>
-        <h3 className='orderhistory__name'>{sessionStorage.getItem('username')}</h3>
+        <h3 className='orderhistory__name'>{userName}</h3>
         <article className='orderhistory__stats'>
           <h3 className='orderhistory__subtitle'>Orderhistorik</h3>
           {orderHistory.length > 0 ? orderList : <p>Inga beställningar finns för den här användaren.</p>}

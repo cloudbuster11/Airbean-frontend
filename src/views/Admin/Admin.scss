@@ -1,0 +1,78 @@
+@use '../../scss/mixins';
+@use '../../scss/colors';
+
+.admin {
+  @include mixins.background(top, colors.$pink);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tools {
+    &__container {
+      @include mixins.center;
+
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title {
+      margin-top: 3rem;
+    }
+
+    &__hide {
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 14px;
+      font-family: 'Work Sans';
+      line-height: 130%;
+      text-align: center;
+    }
+  }
+}
+
+.tool {
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    .button__large {
+      align-self: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 1rem;
+
+      td {
+        width: auto;
+      }
+
+      th,
+      td {
+        text-align: left;
+        border: 1px solid black;
+      }
+
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      .user-email {
+        max-width: 165px;
+        word-wrap: break-word;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+}

@@ -1,7 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
-import { clearCart } from '../../../actions/cartActions';
 import { getCheckoutSession } from '../../../helpers/api';
 
 import CartListItem from './CartListItem/CartListItem';
@@ -21,7 +17,6 @@ export default function CartList({ items, show }) {
     const response = await getCheckoutSession(JSON.stringify(order));
 
     if (response.status === 'success') {
-      sessionStorage.setItem('currenOrder', response.session.id);
       window.location.href = response.session.url;
     }
   };

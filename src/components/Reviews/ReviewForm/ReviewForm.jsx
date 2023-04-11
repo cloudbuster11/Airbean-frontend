@@ -32,7 +32,7 @@ export default function ReviewForm(props) {
       <form className='form' onSubmit={submit}>
         <label className='form__label'>Rating</label>
         <input
-          className='form__input'
+          className='input__large'
           name='rating'
           type='text'
           placeholder='1-5'
@@ -42,7 +42,7 @@ export default function ReviewForm(props) {
 
         <label className='form__label'>Recension</label>
         <input
-          className='form__input'
+          className='input__large'
           name='review'
           type='review'
           placeholder='Vad tyckte du?'
@@ -50,7 +50,7 @@ export default function ReviewForm(props) {
           onChange={handleChange}
         />
 
-        <button className='form__submit' type='submit'>
+        <button className='button__large' type='submit'>
           Skicka
         </button>
       </form>
